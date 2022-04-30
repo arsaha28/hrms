@@ -5,10 +5,7 @@ import com.hrms.repository.IActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -26,8 +23,8 @@ public class ActorController {
     }
 
     @GetMapping(value = "/actor",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Actor>> actor(){
-        return ResponseEntity.ok(iActorRepository.findAll());
+    public ResponseEntity<Actor> actor(@RequestParam("id") String id){
+        return ResponseEntity.ok(iActorRepository.findById(id).get());
     }
 
 
